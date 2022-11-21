@@ -1,0 +1,70 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width">
+<title>OLMap</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v7.1.0/ol.css">
+<script src="https://cdn.jsdelivr.net/npm/ol@v7.1.0/dist/ol.js"></script>
+</head><body>
+<h1 id=title></h1>
+<div id="olmap" style="width:auto;height:600px;"></div>
+<div id="popup" class="ol-popup">
+  <div id="popup-content"></div>
+</div>
+
+<script type="module">
+  import { OLMap } from "./v1/OLMap.js";
+
+  title.textContent = document.title;
+  const map = new OLMap({});
+  map.addVectorLayer("marker");
+  const layer = map.getLayer("marker");
+  map.addMarker(layer, {
+    longitude: 136.22167,
+    latitude: 36.06519,
+    content: "マーカーテスト"
+  });
+</script>
+
+<style>
+  body {
+    text-align: center;
+    font-family: sans-serif;
+  }
+
+  textarea {
+    width: 70vw;
+    height: 8em;
+  }
+
+  .ol-popup {
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #cccccc;
+    bottom: 12px;
+    left: -50px;
+    min-width: 280px;
+  }
+  .ol-popup:after, .ol-popup:before {
+    top: 100%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+  .ol-popup:after {
+    border-top-color: white;
+    border-width: 10px;
+    left: 48px;
+    margin-left: -10px;
+  }
+  .ol-popup:before {
+    border-top-color: #cccccc;
+    border-width: 11px;
+    left: 48px;
+    margin-left: -11px;
+  }
+</style>
+
