@@ -114,16 +114,20 @@ class OLMap {
   }
 
   addMarker(layer, params = {}) {
+    if (!params["icon"]) {
+      return;
+    }
+
     const feature = new ol.Feature({
       geometry: new ol.geom.Point(this.transform(params["longitude"], params["latitude"])),
       content: params["content"] || ""
-    });
+    });    
     feature.setStyle(new ol.style.Style({
       image: new ol.style.Icon({
         anchor: [0.5, 0.5],
         anchorXUnits: "fraction",
         anchorYUnits: "fraction",
-        src: params["icon"] || "/v1/icon.png"
+        src: params["icon"]
       })
     }));
     layer.getSource().addFeature(feature);
