@@ -141,6 +141,11 @@ class OLMap {
   setCenter(coordinate) {
     this[map].getView().setCenter(coordinate);
   }
+
+  getCoordinateFromFeature(feature) {
+    const geometry = feature.getGeometry();
+    return ol.proj.transform([geometry.flatCoordinates[0], geometry.flatCoordinates[1]], "EPSG:3857", "EPSG:4326");
+  }
 }
 
 export { OLMap };
