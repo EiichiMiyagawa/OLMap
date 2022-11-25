@@ -120,7 +120,8 @@ class OLMap {
 
     const feature = new ol.Feature({
       geometry: new ol.geom.Point(this.transform(params["longitude"], params["latitude"])),
-      content: params["content"] || ""
+      content: params["content"] || "",
+      type: params["type"] || null
     });    
     feature.setStyle(new ol.style.Style({
       image: new ol.style.Icon({
