@@ -123,7 +123,7 @@ class OLMap {
         anchor: [0.5, 0.5],
         anchorXUnits: "fraction",
         anchorYUnits: "fraction",
-        src: params["icon"] || "./v1/icon.png"
+        src: params["icon"] || "/v1/icon.png"
       })
     }));
     layer.getSource().addFeature(feature);
