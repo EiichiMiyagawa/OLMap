@@ -33,10 +33,7 @@ class OLMap {
       }),
       view: new ol.View({
         projection: "EPSG:3857",
-        center: ol.proj.transform([
-          params["longitude"] || 136.22167,
-          params["latitude"] || 36.06519
-        ], "EPSG:4326", "EPSG:3857"),
+        center: this.transform(params["longitude"] || 136.22167, params["latitude"] || 36.06519),
         maxZoom: params["maxZoom"] || 18,
         minZoom: params["minZoom"] || 1,
         zoom: params["zoom"] || 12,
@@ -118,7 +115,7 @@ class OLMap {
 
   addMarker(layer, params = {}) {
     const feature = new ol.Feature({
-      geometry: new ol.geom.Point(ol.proj.transform([params["longitude"], params["latitude"]], "EPSG:4326","EPSG:3857")),
+      geometry: new ol.geom.Point(this.transform(params["longitude"], params["latitude"])),
       content: params["content"] || ""
     });
     feature.setStyle(new ol.style.Style({
@@ -130,6 +127,10 @@ class OLMap {
       })
     }));
     layer.getSource().addFeature(feature);
+  }
+
+  transform(longitude, latitude) {
+    return ol.proj.transform([longitude, latitude], "EPSG:4326", "EPSG:3857");
   }
 }
 
