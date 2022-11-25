@@ -132,6 +132,10 @@ class OLMap {
   transform(longitude, latitude) {
     return ol.proj.transform([longitude, latitude], "EPSG:4326", "EPSG:3857");
   }
+
+  setCenter(coordinate) {
+    this[map].getView().setCenter(coordinate);
+  }
 }
 
 export { OLMap };
