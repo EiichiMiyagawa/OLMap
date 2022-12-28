@@ -53,6 +53,11 @@ class OLMap {
         return;
       }
 
+      const isPopup = feature.get("isPopup");
+      if (isPopup == false) {
+        return;
+      }
+
       const content = document.getElementById('popup');
       const coordinate = event.coordinate;
       content.innerHTML = "<p>" + feature.get("content") + "</p>";
@@ -121,7 +126,8 @@ class OLMap {
     const feature = new ol.Feature({
       geometry: new ol.geom.Point(this.transform(params["longitude"], params["latitude"])),
       content: params["content"] || "",
-      tag: params["tag"] || null
+      tag: params["tag"] || null,
+      isPopup: params["isPopup"]
     });    
     feature.setStyle(new ol.style.Style({
       image: new ol.style.Icon({
