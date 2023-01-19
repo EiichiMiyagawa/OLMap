@@ -152,6 +152,10 @@ class OLMap {
     const geometry = feature.getGeometry();
     return ol.proj.transform([geometry.flatCoordinates[0], geometry.flatCoordinates[1]], "EPSG:3857", "EPSG:4326");
   }
+
+  setZoom(zoom) {
+    this[map].getView().setZoom(zoom);
+  }
 }
 
 export { OLMap };
